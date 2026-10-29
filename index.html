@@ -2,299 +2,223 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#260c12">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#310711">
   <title>Hamid Khan Weds Saniya Khan</title>
 
   <link rel="stylesheet" href="style.css">
 
-  <!-- Elegant fonts for the invitation -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
 </head>
 
 <body>
+<main class="website">
 
-  <main class="website">
+  <!-- OPENING DOOR -->
+  <section class="door-screen" id="doorScreen">
+    <img src="./door.jpg" class="door-image" alt="Wedding entrance door">
+    <div class="door-shade"></div>
+    <button class="tap-button" id="tapButton" type="button">
+      TAP HERE <span>✦</span>
+    </button>
+  </section>
 
-    <!-- SCREEN 1: DOOR -->
+  <!-- ENTRANCE VIDEO -->
+  <section class="video-screen" id="videoScreen" hidden>
+    <video id="entranceVideo" class="entrance-video" playsinline preload="auto">
+      <source src="./entrance.webm" type="video/webm">
+    </video>
 
-    <section class="door-screen" id="doorScreen">
+    <div class="video-shade"></div>
+
+    <!-- VINTAGE.JPG IS THE ACTUAL CARD IMAGE -->
+    <section class="vintage-card" id="vintageCard" hidden>
 
       <img
-        src="./door.jpg"
-        class="door-image"
-        alt="Wedding entrance door"
+        src="./vintage.jpg"
+        class="vintage-background"
+        alt=""
+        aria-hidden="true"
       >
 
-      <div class="door-overlay"></div>
+      <div class="card-tint"></div>
 
-      <button id="tapButton" class="tap-button" type="button">
-        TAP HERE <span>✦</span>
-      </button>
+      <div class="card-content">
 
-    </section>
+        <div class="top-flourish" aria-hidden="true">❧ ❦ ❧</div>
 
+        <!-- SLIDE 1 -->
+        <article class="slide active" data-slide="0">
 
-    <!-- SCREEN 2: ENTRANCE VIDEO + INVITATION -->
+          <p class="arabic-bismillah">
+            بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+          </p>
 
-    <section class="video-screen" id="videoScreen" hidden>
+          <p class="tiny-gold-heading">
+            WITH THE BLESSINGS OF ALMIGHTY ALLAH
+          </p>
 
-      <video
-        id="entranceVideo"
-        class="entrance-video"
-        playsinline
-        preload="auto"
-      >
-        <source src="./entrance.webm" type="video/webm">
-        Your browser does not support this video.
-      </video>
-
-      <div class="video-overlay"></div>
-
-      <!-- VINTAGE INVITATION CARD -->
-
-      <section class="vintage-card" id="vintageCard" hidden>
-
-        <div class="card-frame">
-
-          <div class="card-top-ornament">❧ ❦ ❧</div>
-
-
-          <!-- SLIDE 1: ALLAH + COUPLE NAMES -->
-
-          <article class="slide active" data-slide="0">
-
-            <p class="opening-bismillah">
-              بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
-            </p>
-
-            <div class="allah-circle">
-              <div class="allah-inner-circle">
-                <span class="allah-arabic">ﷲ</span>
-                <span class="allah-english">ALLAH</span>
-              </div>
-            </div>
-
-            <p class="blessing-intro">
-              WITH THE BLESSINGS OF<br>
-              ALMIGHTY ALLAH
-            </p>
-
-            <div class="floral-divider">❦ ✦ ❦</div>
-
-            <h1 class="couple-names">
-              Hamid Khan
-              <span>Weds</span>
-              Saniya Khan
-            </h1>
-
-            <div class="floral-divider">❧ ❦ ❧</div>
-
-            <p class="welcome-text">
-              A celebration of love, faith and togetherness
-            </p>
-
-          </article>
-
-
-          <!-- SLIDE 2: FAMILY INVITATION -->
-
-          <article class="slide" data-slide="1">
-
-            <p class="opening-bismillah">
-              بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
-            </p>
-
-            <p class="formal-heading">
-              WITH THE BLESSINGS OF<br>
-              ALMIGHTY ALLAH
-            </p>
-
-            <div class="floral-divider">❦</div>
-
-            <p class="person-name">Hamid Khan</p>
-
-            <p class="family-detail">
-              Son of Mohammed Abid Khan
-            </p>
-
-            <p class="weds-word">Weds</p>
-
-            <p class="person-name">Saniya Khan</p>
-
-            <p class="family-detail">
-              Daughter of Israr Ahmed Khan
-            </p>
-
-            <div class="gold-divider"></div>
-
-            <p class="family-blessing">
-              WITH THE BLESSINGS OF<br>
-              <span>Late Mr. &amp; Mrs. Hussain Khan</span>
-            </p>
-
-            <div class="floral-divider">❧ ❦ ❧</div>
-
-          </article>
-
-
-          <!-- SLIDE 3: WALIMA + COUNTDOWN -->
-
-          <article class="slide" data-slide="2">
-
-            <p class="formal-heading">
-              YOU ARE CORDIALLY INVITED TO
-            </p>
-
-            <h2 class="walima-heading">
-              Walima Ceremony
-            </h2>
-
-            <div class="gold-divider"></div>
-
-            <p class="weekday">MONDAY</p>
-
-            <p class="event-date">
-              28<sup>th</sup>
-            </p>
-
-            <p class="month-year">DECEMBER, 2026</p>
-
-            <p class="event-time">8:00 PM ONWARDS</p>
-
-            <div class="countdown-title">
-              ◆ COUNTING THE MOMENTS ◆
-            </div>
-
-            <div class="countdown">
-
-              <div class="time-box">
-                <span id="days">--</span>
-                <small>DAYS</small>
-              </div>
-
-              <div class="time-box">
-                <span id="hours">--</span>
-                <small>HRS</small>
-              </div>
-
-              <div class="time-box">
-                <span id="minutes">--</span>
-                <small>MIN</small>
-              </div>
-
-              <div class="time-box">
-                <span id="seconds">--</span>
-                <small>SEC</small>
-              </div>
-
-            </div>
-
-            <button
-              class="vintage-button"
-              id="calendarButton"
-              type="button"
-            >
-              Add to Calendar ✦
-            </button>
-
-          </article>
-
-
-          <!-- SLIDE 4: VENUE -->
-
-          <article class="slide" data-slide="3">
-
-            <p class="formal-heading">YOU ARE WARMLY INVITED</p>
-
-            <h2 class="venue-heading">VENUE</h2>
-
-            <div class="gold-divider"></div>
-
-            <h3 class="venue-name">SONA LAWNS</h3>
-
-            <p class="venue-address">
-              Plot No. 340, Waman Tukaram Patil Marg,<br>
-              near Amar Talkies, next to Bank of Maharashtra,<br>
-              Shivneri Nagar, Chembur,<br>
-              Mumbai - 400043
-            </p>
-
-            <a
-              class="vintage-button map-button"
-              href="https://www.google.com/maps/search/?api=1&query=Sona%20Lawns%2C%20Plot%20No.%20340%2C%20Waman%20Tukaram%20Patil%20Marg%2C%20Chembur%2C%20Mumbai%20400043"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Open Location ↗
-            </a>
-
-            <div class="floral-divider">❧ ❦ ❧</div>
-
-            <p class="closing-message">
-              Your presence is awaited
-            </p>
-
-            <p class="cute-line">
-              With love, duas and hearts full of happiness ♡
-            </p>
-
-          </article>
-
-
-          <!-- LEFT / RIGHT SLIDE CONTROLS -->
-
-          <div class="slide-navigation">
-
-            <button
-              id="previousSlide"
-              class="arrow-button"
-              type="button"
-              aria-label="Previous slide"
-            >‹</button>
-
-            <div class="slide-dots">
-
-              <button class="dot active" data-go="0" type="button" aria-label="Slide 1"></button>
-
-              <button class="dot" data-go="1" type="button" aria-label="Slide 2"></button>
-
-              <button class="dot" data-go="2" type="button" aria-label="Slide 3"></button>
-
-              <button class="dot" data-go="3" type="button" aria-label="Slide 4"></button>
-
-            </div>
-
-            <button
-              id="nextSlide"
-              class="arrow-button"
-              type="button"
-              aria-label="Next slide"
-            >›</button>
-
+          <div class="allah-medallion">
+            <div class="medallion-ring ring-one"></div>
+            <div class="medallion-ring ring-two"></div>
+            <div class="medallion-dots">✦　✧　✦</div>
+            <span class="allah-arabic">ﷲ</span>
+            <span class="allah-label">ALLAH</span>
+            <div class="medallion-bottom">❧</div>
           </div>
 
-          <p class="swipe-note">SWIPE TO EXPLORE THE INVITATION</p>
+          <div class="ornamental-divider">✦ ❧ ✦</div>
 
-          <div class="card-bottom-ornament">❧ ❦ ❧</div>
+          <p class="hero-name">Hamid Khan</p>
+          <p class="hero-weds">WEDS</p>
+          <p class="hero-name">Saniya Khan</p>
 
-        </div>
+          <div class="ornamental-divider">❧ ❦ ❧</div>
 
-      </section>
+          <p class="slide-one-footer">
+            A CELEBRATION OF LOVE, FAITH &amp; TOGETHERNESS
+          </p>
 
+        </article>
 
-      <button class="replay-button" id="replayButton" type="button" hidden>
-        ↻ Replay Entrance
-      </button>
+        <!-- SLIDE 2 -->
+        <article class="slide" data-slide="1">
 
+          <p class="arabic-bismillah">
+            بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+          </p>
+
+          <p class="formal-heading">
+            WITH THE BLESSINGS OF<br>ALMIGHTY ALLAH
+          </p>
+
+          <p class="script-name">Hamid Khan</p>
+          <p class="family-detail">Son of Mohammed Abid Khan</p>
+
+          <p class="weds-word">WEDS</p>
+
+          <p class="script-name">Saniya Khan</p>
+          <p class="family-detail">Daughter of Israr Ahmed Khan</p>
+
+          <div class="gold-rule"></div>
+
+          <p class="family-blessing">
+            WITH THE BLESSINGS OF<br>
+            <span>Late Mr. &amp; Mrs. Hussain Khan</span>
+          </p>
+
+          <div class="ornamental-divider">❧ ❦ ❧</div>
+
+        </article>
+
+        <!-- SLIDE 3 -->
+        <article class="slide" data-slide="2">
+
+          <p class="formal-heading">
+            YOU ARE CORDIALLY INVITED TO
+          </p>
+
+          <h2 class="walima-title">Walima Ceremony</h2>
+
+          <div class="gold-rule"></div>
+
+          <p class="event-weekday">MONDAY</p>
+          <p class="event-date">28<sup>th</sup></p>
+          <p class="event-month">DECEMBER, 2026</p>
+          <p class="event-time">8:00 PM ONWARDS</p>
+
+          <div class="countdown-heading">
+            ◆ COUNTING THE MOMENTS ◆
+          </div>
+
+          <div class="countdown">
+            <div class="time-box">
+              <span id="days">--</span>
+              <small>DAYS</small>
+            </div>
+            <div class="time-box">
+              <span id="hours">--</span>
+              <small>HRS</small>
+            </div>
+            <div class="time-box">
+              <span id="minutes">--</span>
+              <small>MIN</small>
+            </div>
+            <div class="time-box">
+              <span id="seconds">--</span>
+              <small>SEC</small>
+            </div>
+          </div>
+
+          <button class="luxury-button" id="calendarButton" type="button">
+            ♧ &nbsp; ADD TO CALENDAR
+          </button>
+
+        </article>
+
+        <!-- SLIDE 4 -->
+        <article class="slide" data-slide="3">
+
+          <p class="formal-heading">WE LOOK FORWARD TO WELCOMING YOU</p>
+
+          <h2 class="venue-title">VENUE</h2>
+
+          <div class="gold-rule"></div>
+
+          <h3 class="venue-name">SONA LAWNS</h3>
+
+          <p class="venue-address">
+            Plot No. 340, Waman Tukaram Patil Marg,<br>
+            near Amar Talkies, next to Bank of Maharashtra,<br>
+            Shivneri Nagar, Chembur,<br>
+            Mumbai - 400043
+          </p>
+
+          <a
+            class="luxury-button map-button"
+            href="https://www.google.com/maps/search/?api=1&query=Sona%20Lawns%2C%20Plot%20No.%20340%2C%20Waman%20Tukaram%20Patil%20Marg%2C%20Chembur%2C%20Mumbai%20400043"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            OPEN LOCATION ↗
+          </a>
+
+          <div class="ornamental-divider">❧ ❦ ❧</div>
+
+          <p class="closing-message">Your presence is awaited</p>
+          <p class="cute-message">With love, duas and hearts full of happiness ♡</p>
+
+        </article>
+
+        <!-- SLIDE NAVIGATION -->
+        <nav class="slide-navigation" aria-label="Invitation slides">
+          <button id="previousSlide" class="arrow-button" type="button" aria-label="Previous slide">‹</button>
+
+          <div class="slide-dots">
+            <button class="dot active" data-go="0" type="button" aria-label="Slide 1"></button>
+            <button class="dot" data-go="1" type="button" aria-label="Slide 2"></button>
+            <button class="dot" data-go="2" type="button" aria-label="Slide 3"></button>
+            <button class="dot" data-go="3" type="button" aria-label="Slide 4"></button>
+          </div>
+
+          <button id="nextSlide" class="arrow-button" type="button" aria-label="Next slide">›</button>
+        </nav>
+
+        <p class="swipe-hint">SWIPE LEFT OR RIGHT</p>
+        <div class="bottom-flourish" aria-hidden="true">❧ ❦ ❧</div>
+
+      </div>
     </section>
 
-  </main>
+    <button class="replay-button" id="replayButton" type="button" hidden>
+      ↻ Replay Entrance
+    </button>
 
-  <script src="script.js"></script>
+  </section>
+</main>
 
+<script src="script.js"></script>
 </body>
 </html>
