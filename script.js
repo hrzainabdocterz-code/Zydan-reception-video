@@ -1,8 +1,3 @@
-/* ==========================================
-   HAMID KHAN WEDS SANIYA KHAN
-   Invitation Website Functions
-========================================== */
-
 document.addEventListener("DOMContentLoaded", function () {
 
   const doorScreen = document.getElementById("doorScreen");
@@ -20,84 +15,51 @@ document.addEventListener("DOMContentLoaded", function () {
   const calendarButton = document.getElementById("calendarButton");
 
   let currentSlide = 0;
-  let touchStartX = 0;
-  let touchStartY = 0;
+  let startX = 0;
+  let startY = 0;
 
 
-  /* ==========================================
-     1. TAP THE DOOR AND PLAY VIDEO WITH MUSIC
-  ========================================== */
+  /* DOOR -> VIDEO WITH ORIGINAL AUDIO */
 
   tapButton.addEventListener("click", async function () {
 
     doorScreen.hidden = true;
     videoScreen.hidden = false;
 
-    // Keep audio enabled so the video's original music plays.
     entranceVideo.muted = false;
     entranceVideo.volume = 1;
-    entranceVideo.playsInline = true;
 
     try {
-
       entranceVideo.currentTime = 0;
       await entranceVideo.play();
-
     } catch (error) {
-
-      console.error("Entrance video could not play:", error);
-
-      // The invitation remains accessible even if the video fails.
+      console.error("Video playback failed:", error);
       showInvitation();
-
     }
 
   });
 
 
-  /* ==========================================
-     2. SHOW CARD WHEN VIDEO ENDS
-  ========================================== */
+  /* VIDEO END -> VINTAGE CARD */
 
   function showInvitation() {
-
     vintageCard.hidden = false;
     replayButton.hidden = false;
-
     showSlide(0);
-
   }
 
   entranceVideo.addEventListener("ended", function () {
-
-    /*
-      Do not hide the video.
-      It remains on its final frame behind the card.
-    */
-
+    // Keep the video visible on its last frame behind the card.
     showInvitation();
-
   });
-
-
-  /* ==========================================
-     3. VIDEO ERROR FALLBACK
-  ========================================== */
 
   entranceVideo.addEventListener("error", function () {
-
-    console.error(
-      "Please check that entrance.webm exists in the repository root."
-    );
-
+    console.error("Check the filename entrance.webm and video format.");
     showInvitation();
-
   });
 
 
-  /* ==========================================
-     4. REPLAY THE ENTRANCE VIDEO
-  ========================================== */
+  /* REPLAY VIDEO */
 
   replayButton.addEventListener("click", async function () {
 
@@ -105,91 +67,65 @@ document.addEventListener("DOMContentLoaded", function () {
     replayButton.hidden = true;
 
     try {
-
       entranceVideo.currentTime = 0;
       entranceVideo.muted = false;
       await entranceVideo.play();
-
     } catch (error) {
-
       showInvitation();
-
     }
 
   });
 
 
-  /* ==========================================
-     5. FOUR-SLIDE NAVIGATION
-  ========================================== */
+  /* FOUR SLIDES */
 
   function showSlide(index) {
 
     currentSlide = (index + slides.length) % slides.length;
 
     slides.forEach(function (slide, i) {
-
       slide.classList.toggle("active", i === currentSlide);
-
       slide.setAttribute(
         "aria-hidden",
         i === currentSlide ? "false" : "true"
       );
-
     });
 
     dots.forEach(function (dot, i) {
-
       dot.classList.toggle("active", i === currentSlide);
-
       dot.setAttribute(
         "aria-current",
         i === currentSlide ? "true" : "false"
       );
-
     });
 
   }
 
-
   previousSlide.addEventListener("click", function () {
-
     showSlide(currentSlide - 1);
-
   });
-
 
   nextSlide.addEventListener("click", function () {
-
     showSlide(currentSlide + 1);
-
   });
-
 
   dots.forEach(function (dot) {
-
     dot.addEventListener("click", function () {
-
       showSlide(Number(dot.dataset.go));
-
     });
-
   });
 
 
-  /* ==========================================
-     6. MOBILE SWIPE LEFT AND RIGHT
-  ========================================== */
+  /* SWIPE LEFT / RIGHT ON MOBILE */
 
   vintageCard.addEventListener("touchstart", function (event) {
 
     if (!event.changedTouches.length) return;
 
-    touchStartX = event.changedTouches[0].clientX;
-    touchStartY = event.changedTouches[0].clientY;
+    startX = event.changedTouches[0].clientX;
+    startY = event.changedTouches[0].clientY;
 
   }, { passive: true });
-
 
   vintageCard.addEventListener("touchend", function (event) {
 
@@ -198,64 +134,51 @@ document.addEventListener("DOMContentLoaded", function () {
     const endX = event.changedTouches[0].clientX;
     const endY = event.changedTouches[0].clientY;
 
-    const differenceX = endX - touchStartX;
-    const differenceY = endY - touchStartY;
+    const dx = endX - startX;
+    const dy = endY - startY;
 
-    // Ignore vertical scrolling; respond to horizontal swipes only.
-    if (
-      Math.abs(differenceX) > 45 &&
-      Math.abs(differenceX) > Math.abs(differenceY) * 1.2
-    ) {
-
-      if (differenceX < 0) {
-        showSlide(currentSlide + 1);
-      } else {
-        showSlide(currentSlide - 1);
-      }
-
+    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.2) {
+      showSlide(currentSlide + (dx < 0 ? 1 : -1));
     }
 
   }, { passive: true });
 
 
-  /* ==========================================
-     7. ADD WALIMA TO CALENDAR
-     Event: 28 December 2026, 8 PM IST
-  ========================================== */
+  /* CALENDAR EVENT */
 
   calendarButton.addEventListener("click", function () {
 
-    const eventDetails = [
+    const eventText = [
       "BEGIN:VCALENDAR",
       "VERSION:2.0",
-      "PRODID:-//Hamid Khan and Saniya Khan//Walima//EN",
+      "PRODID:-//Hamid Khan Weds Saniya Khan//Walima//EN",
       "CALSCALE:GREGORIAN",
       "BEGIN:VEVENT",
       "UID:hamid-saniya-walima-20261228@invitation",
       "DTSTAMP:20261029T000000Z",
       "DTSTART;TZID=Asia/Kolkata:20261228T200000",
       "DTEND;TZID=Asia/Kolkata:20261228T230000",
-      "SUMMARY:Walima Ceremony - Hamid Khan and Saniya Khan",
+      "SUMMARY:Walima Ceremony - Hamid Khan Weds Saniya Khan",
       "LOCATION:SONA LAWNS, Plot No. 340, Waman Tukaram Patil Marg, near Amar Talkies, next to Bank of Maharashtra, Shivneri Nagar, Chembur, Mumbai - 400043",
-      "DESCRIPTION:You are cordially invited to the Walima Ceremony of Hamid Khan and Saniya Khan on Monday, 28 December 2026 at 8 PM onwards.",
+      "DESCRIPTION:You are cordially invited to the Walima Ceremony on Monday, 28 December 2026 at 8:00 PM onwards.",
       "END:VEVENT",
       "END:VCALENDAR"
     ].join("\r\n");
 
-    const calendarFile = new Blob(
-      [eventDetails],
+    const file = new Blob(
+      [eventText],
       { type: "text/calendar;charset=utf-8" }
     );
 
-    const fileURL = URL.createObjectURL(calendarFile);
-    const downloadLink = document.createElement("a");
+    const fileURL = URL.createObjectURL(file);
+    const link = document.createElement("a");
 
-    downloadLink.href = fileURL;
-    downloadLink.download = "Hamid-Saniya-Walima.ics";
+    link.href = fileURL;
+    link.download = "Hamid-Saniya-Walima.ics";
 
-    document.body.appendChild(downloadLink);
-    downloadLink.click();
-    downloadLink.remove();
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
 
     setTimeout(function () {
       URL.revokeObjectURL(fileURL);
@@ -264,73 +187,45 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 
-  /* ==========================================
-     8. LIVE COUNTDOWN TIMER
-     India Standard Time: UTC+05:30
-  ========================================== */
+  /* LIVE COUNTDOWN: 28 DECEMBER 2026, 8 PM IST */
 
   const eventDate = new Date("2026-12-28T20:00:00+05:30");
 
-  const daysElement = document.getElementById("days");
-  const hoursElement = document.getElementById("hours");
-  const minutesElement = document.getElementById("minutes");
-  const secondsElement = document.getElementById("seconds");
-
+  const daysEl = document.getElementById("days");
+  const hoursEl = document.getElementById("hours");
+  const minutesEl = document.getElementById("minutes");
+  const secondsEl = document.getElementById("seconds");
 
   function updateCountdown() {
 
     let remaining = eventDate.getTime() - Date.now();
 
     if (remaining <= 0) {
-
-      daysElement.textContent = "0";
-      hoursElement.textContent = "00";
-      minutesElement.textContent = "00";
-      secondsElement.textContent = "00";
-
+      daysEl.textContent = "0";
+      hoursEl.textContent = "00";
+      minutesEl.textContent = "00";
+      secondsEl.textContent = "00";
       return;
-
     }
 
-    const days = Math.floor(
-      remaining / (1000 * 60 * 60 * 24)
-    );
+    const days = Math.floor(remaining / 86400000);
+    remaining %= 86400000;
 
-    remaining %= 1000 * 60 * 60 * 24;
+    const hours = Math.floor(remaining / 3600000);
+    remaining %= 3600000;
 
-    const hours = Math.floor(
-      remaining / (1000 * 60 * 60)
-    );
+    const minutes = Math.floor(remaining / 60000);
+    const seconds = Math.floor((remaining % 60000) / 1000);
 
-    remaining %= 1000 * 60 * 60;
-
-    const minutes = Math.floor(
-      remaining / (1000 * 60)
-    );
-
-    const seconds = Math.floor(
-      (remaining % (1000 * 60)) / 1000
-    );
-
-    daysElement.textContent = days;
-
-    hoursElement.textContent = String(hours).padStart(2, "0");
-
-    minutesElement.textContent = String(minutes).padStart(2, "0");
-
-    secondsElement.textContent = String(seconds).padStart(2, "0");
+    daysEl.textContent = days;
+    hoursEl.textContent = String(hours).padStart(2, "0");
+    minutesEl.textContent = String(minutes).padStart(2, "0");
+    secondsEl.textContent = String(seconds).padStart(2, "0");
 
   }
 
-
   updateCountdown();
-
   setInterval(updateCountdown, 1000);
-
-
-  /* ==========================================
-     9. INITIALISE THE FIRST SLIDE
-  ========================================== */
 
   showSlide(0);
 
